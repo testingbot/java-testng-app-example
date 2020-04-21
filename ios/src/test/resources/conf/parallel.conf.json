@@ -1,0 +1,24 @@
+{
+  "server": "hub.testingbot.com",
+  "key": "TESTINGBOT_KEY",
+  "secret": "TESTINGBOT_SECRET",
+
+  "capabilities": {
+    "build": "testng-testingbot",
+    "name": "parallel_appium_test",
+    "app": "tb://<hashed app-id>"
+  },
+
+  "environments": {
+    "iPhone_X": {
+      "platformName": "iOS",
+      "version": "12.2",
+      "deviceName": "iPhone X"
+    },
+    "iPhone_8": {
+      "platformName": "iOS",
+      "version": "12.1",
+      "deviceName": "iPhone 8",
+    }
+  }
+}

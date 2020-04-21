@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel" thread-count="3" parallel="tests">
+    <test name="SingleTestPixel2">
+        <parameter name="config" value="parallel.conf.json"/>
+        <parameter name="environment" value="pixel2"/>
+        <classes>
+            <class name="com.testingbot.SingleTest"/>
+        </classes>
+    </test>
+
+    <test name="SingleTestGalaxyS10">
+        <parameter name="config" value="parallel.conf.json"/>
+        <parameter name="environment" value="galaxy_s10"/>
+        <classes>
+            <class name="com.testingbot.SingleTest"/>
+        </classes>
+    </test>
+</suite>

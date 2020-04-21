@@ -1,0 +1,19 @@
+{
+  "server": "hub.testingbot.com",
+  "key": "TESTINGBOT_KEY",
+  "secret": "TESTINGBOT_SECRET",
+
+  "capabilities": {
+    "build": "testng-testingbot",
+    "name": "single_appium_test",
+    "app": "tb://<hashed app-id>"
+  },
+
+  "environments": {
+    "galaxy_s10": {
+      "deviceName": "Galaxy S10",
+      "platformName": "Android",
+      "version": "9.0"
+    }
+  }
+}
