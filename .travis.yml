@@ -4,4 +4,4 @@ jdk:
   - openjdk8
 
 scripts:
-  - mvn test -P single
+  - cd android && mvn test -P single

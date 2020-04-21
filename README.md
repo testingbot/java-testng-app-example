@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/testingbot/java-testng-app-example.svg?branch=master)](https://travis-ci.org/testingbot/java-testng-app-example)
+
 ## TestingBot - Java & TestNG
 
 TestingBot provides a grid of browsers and mobile devices to run Automated tests.
