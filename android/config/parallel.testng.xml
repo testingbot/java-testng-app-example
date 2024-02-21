@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Parallel" thread-count="3" parallel="tests">
-    <test name="SingleTestPixel2">
+    <test name="SingleTestPixel6">
         <parameter name="config" value="parallel.conf.json"/>
-        <parameter name="environment" value="pixel2"/>
+        <parameter name="environment" value="pixel6"/>
         <classes>
             <class name="com.testingbot.SingleTest"/>
         </classes>

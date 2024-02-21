@@ -1,7 +1,0 @@
-language: java
-
-jdk:
-  - openjdk8
-
-scripts:
-  - cd android && mvn test -P single

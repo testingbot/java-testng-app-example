@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/testingbot/java-testng-app-example.svg?branch=master)](https://travis-ci.org/testingbot/java-testng-app-example)
-
 ## TestingBot - Java & TestNG
 
 TestingBot provides a grid of browsers and mobile devices to run Automated tests.
@@ -26,4 +24,4 @@ You will see the test result in the [TestingBot Dashboard](https://testingbot.co
 ### Resources
 ##### [TestingBot Documentation](https://testingbot.com/support/mobile/testng.html)
 
-##### [Appium Documentation](http://appium.io/)
+##### [Appium Documentation](https://appium.io/)

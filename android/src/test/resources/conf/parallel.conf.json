@@ -4,21 +4,23 @@
   "secret": "TESTINGBOT_SECRET",
 
   "capabilities": {
-    "build": "testng-testingbot",
-    "name": "parallel_appium_test",
-    "app": "tb://<hashed app-id>"
+    "tb:options": {
+      "build": "testng-testingbot",
+      "name": "single_appium_test",
+    },
+    "appium:app": "tb://<hashed app-id>"
   },
 
   "environments": {
-    "pixel2": {
-      "deviceName": "Pixel 2",
+    "pixel6": {
+      "deviceName": "Pixel 6",
       "platformName": "Android",
-      "version": "7.1"
+      "version": "12.0"
     },
     "galaxy_s10": {
       "deviceName": "Galaxy S10",
       "platformName": "Android",
-      "version": "9.0"
+      "version": "10.0"
     }
   }
 }

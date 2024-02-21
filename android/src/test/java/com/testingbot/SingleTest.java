@@ -23,7 +23,7 @@ public class SingleTest extends TestingBotTestNGTest {
       Thread.sleep(5000);
 
       AndroidElement sum = (AndroidElement) new WebDriverWait(driver, 30).until(
-          ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("sum")));
+          ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("sum")));
       Assert.assertEquals(sum.getText(), "15");
     }
 }
