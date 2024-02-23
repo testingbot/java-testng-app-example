@@ -3,7 +3,7 @@
 <suite name="Single">
     <test name="SingleTest">
         <parameter name="config" value="single.conf.json"/>
-        <parameter name="environment" value="iPhone_X"/>
+        <parameter name="environment" value="iPhone_15"/>
         <classes>
             <class name="com.testingbot.SingleTest"/>
         </classes>

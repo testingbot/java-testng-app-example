@@ -42,7 +42,7 @@ public class TestingBotTestNGTest {
     while (it.hasNext()) {
       Map.Entry pair = (Map.Entry) it.next();
       if (capabilities.getCapability(pair.getKey().toString()) == null){
-          capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+          capabilities.setCapability(pair.getKey().toString(), pair.getValue());
       }
     }
 
@@ -58,10 +58,10 @@ public class TestingBotTestNGTest {
     
     String app = System.getenv("TESTINGBOT_APP_ID");
     if (app != null && !app.isEmpty()) {
-      capabilities.setCapability("app", app);
+      capabilities.setCapability("appium:app", app);
     }
 
-    driver = new IOSDriver<IOSElement>(new URL("http://"+key+":"+secret+"@"+config.get("server")+"/wd/hub"), capabilities);
+    driver = new IOSDriver<IOSElement>(new URL("https://"+key+":"+secret+"@"+config.get("server")+"/wd/hub"), capabilities);
   }
 
   @AfterMethod(alwaysRun=true)

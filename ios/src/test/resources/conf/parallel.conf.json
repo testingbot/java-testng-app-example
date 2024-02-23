@@ -4,21 +4,23 @@
   "secret": "TESTINGBOT_SECRET",
 
   "capabilities": {
-    "build": "testng-testingbot",
-    "name": "parallel_appium_test",
-    "app": "tb://<hashed app-id>"
+    "tb:options": {
+      "build": "testng-testingbot",
+      "name": "parallel_appium_test",
+    },
+    "appium:app": "tb://<hashed app-id>"
   },
 
   "environments": {
-    "iPhone_X": {
+    "iPhone_15": {
       "platformName": "iOS",
-      "version": "12.2",
-      "deviceName": "iPhone X"
+      "version": "17.2",
+      "deviceName": "iPhone 15"
     },
-    "iPhone_8": {
+    "iPhone_14": {
       "platformName": "iOS",
-      "version": "12.1",
-      "deviceName": "iPhone 8",
+      "version": "16.2",
+      "deviceName": "iPhone 14",
     }
   }
 }
