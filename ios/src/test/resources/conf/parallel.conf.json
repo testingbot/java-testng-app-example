@@ -2,25 +2,25 @@
   "server": "hub.testingbot.com",
   "key": "TESTINGBOT_KEY",
   "secret": "TESTINGBOT_SECRET",
-
   "capabilities": {
     "tb:options": {
       "build": "testng-testingbot",
-      "name": "parallel_appium_test",
+      "name": "parallel_appium_test"
     },
     "appium:app": "tb://<hashed app-id>"
   },
-
   "environments": {
-    "iPhone_15": {
+    "iPhone_16e": {
       "platformName": "iOS",
-      "version": "17.2",
-      "deviceName": "iPhone 15"
+      "appium:deviceName": "iPhone 16e",
+      "appium:platformVersion": "26.0",
+      "appium:automationName": "XCUITest"
     },
-    "iPhone_14": {
+    "iPhone_17": {
       "platformName": "iOS",
-      "version": "16.2",
-      "deviceName": "iPhone 14",
+      "appium:deviceName": "iPhone 17",
+      "appium:platformVersion": "26.3",
+      "appium:automationName": "XCUITest"
     }
   }
 }
