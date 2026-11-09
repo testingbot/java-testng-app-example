@@ -34,4 +34,4 @@
 * Devices are configured in `src/test/resources/conf/*.conf.json` using W3C capabilities (`platformName`, `appium:deviceName`, `appium:platformVersion`).
 
 ## Additional Documentation
-* [TestNG example](https://testingbot.com/support/app-automate/appium/testng)
+* [TestNG example](https://testingbot.com/support/app-automate/appium/java/testng)

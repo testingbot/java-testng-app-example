@@ -42,6 +42,6 @@ To run on two devices in parallel, use `mvn test -P parallel`.
 You will see the test result in the [TestingBot Dashboard](https://testingbot.com/members/).
 
 ### Resources
-##### [TestingBot TestNG Documentation](https://testingbot.com/support/app-automate/appium/testng)
+##### [TestingBot TestNG Documentation](https://testingbot.com/support/app-automate/appium/java/testng)
 
 ##### [Appium Documentation](https://appium.io/)
