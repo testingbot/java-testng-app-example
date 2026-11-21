@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Parallel" thread-count="2" parallel="tests">
-    <test name="SingleTestiPhone15">
+    <test name="SingleTestiPhone16e">
         <parameter name="config" value="parallel.conf.json"/>
-        <parameter name="environment" value="iPhone_15"/>
+        <parameter name="environment" value="iPhone_16e"/>
         <classes>
             <class name="com.testingbot.SingleTest"/>
         </classes>
     </test>
 
-    <test name="SingleTestiPhone8">
+    <test name="SingleTestiPhone17">
         <parameter name="config" value="parallel.conf.json"/>
-        <parameter name="environment" value="iPhone_14"/>
+        <parameter name="environment" value="iPhone_17"/>
         <classes>
             <class name="com.testingbot.SingleTest"/>
         </classes>

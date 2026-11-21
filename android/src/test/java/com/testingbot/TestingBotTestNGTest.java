@@ -1,50 +1,44 @@
 package com.testingbot;
 
-import java.net.URL;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.io.FileReader;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.MutableCapabilities;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import io.appium.java_client.android.AndroidDriver;
 
 public class TestingBotTestNGTest {
-    public AndroidDriver<AndroidElement> driver;
+    public AndroidDriver driver;
 
-    @BeforeMethod(alwaysRun=true)
-    @org.testng.annotations.Parameters(value={"config", "environment"})
-    public void setUp(String config_file, String environment) throws Exception {
+    @BeforeMethod(alwaysRun = true)
+    @Parameters(value = {"config", "environment"})
+    @SuppressWarnings("unchecked")
+    public void setUp(String configFile, String environment) throws Exception {
         JSONParser parser = new JSONParser();
-        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
+        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + configFile));
         JSONObject envs = (JSONObject) config.get("environments");
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+        MutableCapabilities capabilities = new MutableCapabilities();
 
-        Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
-        Iterator it = envCapabilities.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
-        }
-        
-        Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");
-        it = commonCapabilities.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            if(capabilities.getCapability(pair.getKey().toString()) == null){
-                capabilities.setCapability(pair.getKey().toString(), pair.getValue());
+        // Device specific capabilities (platformName, appium:deviceName, appium:platformVersion)
+        Map<String, Object> envCapabilities = (Map<String, Object>) envs.get(environment);
+        envCapabilities.forEach(capabilities::setCapability);
+
+        // Capabilities shared by all devices (appium:app, tb:options)
+        Map<String, Object> commonCapabilities = (Map<String, Object>) config.get("capabilities");
+        commonCapabilities.forEach((name, value) -> {
+            if (capabilities.getCapability(name) == null) {
+                capabilities.setCapability(name, value);
             }
-        }
+        });
 
         String key = System.getenv("TESTINGBOT_KEY");
         if (key == null) {
@@ -55,17 +49,33 @@ public class TestingBotTestNGTest {
         if (secret == null) {
             secret = (String) config.get("secret");
         }
-        
+
+        Map<String, Object> tbOptions = new HashMap<>();
+        Object configuredOptions = capabilities.getCapability("tb:options");
+        if (configuredOptions instanceof Map) {
+            tbOptions.putAll((Map<String, Object>) configuredOptions);
+        }
+        tbOptions.put("key", key);
+        tbOptions.put("secret", secret);
+        capabilities.setCapability("tb:options", tbOptions);
+
         String app = System.getenv("TESTINGBOT_APP_ID");
         if (app != null && !app.isEmpty()) {
-          capabilities.setCapability("appium:app", app);
+            capabilities.setCapability("appium:app", app);
         }
 
-        driver = new AndroidDriver(new URL("https://"+key+":"+secret+"@"+config.get("server")+"/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("https://" + config.get("server") + "/wd/hub"), capabilities);
     }
 
-    @AfterMethod(alwaysRun=true)
-    public void tearDown() throws Exception {
-        driver.quit();
+    @AfterMethod(alwaysRun = true)
+    public void tearDown(ITestResult result) {
+        if (driver == null) {
+            return;
+        }
+        try {
+            driver.executeScript("tb:test-result=" + (result.isSuccess() ? "passed" : "failed"));
+        } finally {
+            driver.quit();
+        }
     }
 }

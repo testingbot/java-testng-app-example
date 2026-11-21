@@ -1,29 +1,32 @@
 package com.testingbot;
 
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.android.AndroidElement;
+import java.time.Duration;
 
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.util.List;
+
+import io.appium.java_client.AppiumBy;
 
 public class SingleTest extends TestingBotTestNGTest {
 
     @Test
-    public void test() throws Exception {
-      AndroidElement inputA = (AndroidElement) new WebDriverWait(driver, 30).until(
-          ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("inputA")));
-      inputA.sendKeys("10");
-      AndroidElement inputB = (AndroidElement) new WebDriverWait(driver, 30).until(
-          ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("inputB")));
-      inputB.sendKeys("5");
-      Thread.sleep(5000);
+    public void test() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-      AndroidElement sum = (AndroidElement) new WebDriverWait(driver, 30).until(
-          ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("sum")));
-      Assert.assertEquals(sum.getText(), "15");
+        WebElement inputA = wait.until(
+            ExpectedConditions.elementToBeClickable(AppiumBy.accessibilityId("inputA")));
+        inputA.sendKeys("10");
+
+        WebElement inputB = wait.until(
+            ExpectedConditions.elementToBeClickable(AppiumBy.accessibilityId("inputB")));
+        inputB.sendKeys("5");
+
+        WebElement sum = wait.until(
+            ExpectedConditions.presenceOfElementLocated(AppiumBy.accessibilityId("sum")));
+        wait.until(ExpectedConditions.textToBePresentInElement(sum, "15"));
+        Assert.assertEquals(sum.getText(), "15");
     }
 }

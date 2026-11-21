@@ -2,25 +2,25 @@
   "server": "hub.testingbot.com",
   "key": "TESTINGBOT_KEY",
   "secret": "TESTINGBOT_SECRET",
-
   "capabilities": {
     "tb:options": {
       "build": "testng-testingbot",
-      "name": "single_appium_test",
+      "name": "parallel_appium_test"
     },
     "appium:app": "tb://<hashed app-id>"
   },
-
   "environments": {
-    "pixel6": {
-      "deviceName": "Pixel 6",
+    "pixel_8": {
       "platformName": "Android",
-      "version": "12.0"
+      "appium:deviceName": "Pixel 8",
+      "appium:platformVersion": "14.0",
+      "appium:automationName": "UiAutomator2"
     },
-    "galaxy_s10": {
-      "deviceName": "Galaxy S10",
+    "pixel_9": {
       "platformName": "Android",
-      "version": "10.0"
+      "appium:deviceName": "Pixel 9",
+      "appium:platformVersion": "15.0",
+      "appium:automationName": "UiAutomator2"
     }
   }
 }
